@@ -5,7 +5,7 @@ import pandas as pd
 username='<username of the Jenkins server>'
 password='<password of the Jenkins server>'
 file_path='<file path of the Excel sheet>'
-server_name='<link to the jenkins server>'
+server_name='<link to the Jenkins server>'
 lob='<name of lob to calculate the build time>'
 
 class DurationMetrics:
