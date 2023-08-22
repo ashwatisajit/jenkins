@@ -2,8 +2,8 @@ import jenkins
 import pandas as pd
 
 #TODO: input the details
-username='<username>'
-password='<password>'
+username='<username of the Jenkins server>'
+password='<password of the Jenkins server>'
 file_path='<file path of the Excel sheet>'
 server_name='<link to the jenkins server>'
 lob='<name of lob to calculate the build time>'
