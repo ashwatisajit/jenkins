@@ -1,4 +1,4 @@
-<u>**Code to collect build times of various jobs on Jenkins**</u>
+**Code to collect build times of various jobs on Jenkins**
 
 **build_time.py**
 
