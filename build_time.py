@@ -1,26 +1,14 @@
 import jenkins
 import pandas as pd
-import configparser, itertools
-file_path=''
-server_name=''
-lob=''
-def read_config_file(config_file_path):
-    #TODO: read input from the config file
-    config = configparser.ConfigParser()
-    config.read(config_file_path)
-    if 'Jenkins' in config:
-        username = config.get('Jenkins', 'username')
-        password = config.get('Jenkins', 'password')
-        file_path = config.get('Jenkins', 'file_path')
-        server_name = config.get('Jenkins', 'server_name')
-        lob = config.get('Jenkins', 'lob')
-        return username, password, file_path, server_name, lob
-    else:
-        raise ValueError("Invalid or missing [Jenkins] section in the config file")
+
+#input the details
+username='<username>'
+password='<password>'
+file_path='<file path of the Excel sheet>'
+server_name='<link to the jenkins server>'
+lob='<name of lob to calculate the build time>'
 
 class DurationMetrics:
-    username = ''
-    password = ''
     totalBuildDuration = 0.0
     jobBuildDuration= 0.0
     jobnumberOfBuilds = 0.0
@@ -29,10 +17,6 @@ class DurationMetrics:
     jobnames=[]
     averageDuration = 0.0
     server = None
-
-    def __init__(self,username,password):
-        self.username = username
-        self.password = password
 
     def calculateAverageDuration(self):
         #TODO: calculate average duration
@@ -69,7 +53,7 @@ class DurationMetrics:
     def connectToJenkins(self):
         # TODO: connect to Jenkins server
         timeout_value = 30
-        self.server = jenkins.Jenkins(server_name, username=self.username, password=self.password,timeout=timeout_value)
+        self.server = jenkins.Jenkins(server_name, username, password, timeout=timeout_value)
 
     def export(self):
         # TODO: export the data to an Excel sheet
@@ -80,10 +64,8 @@ class DurationMetrics:
         df1.to_excel(file_path, index=False)
 
 if __name__ == "__main__":
-    config_file_path = 'jenkins_config.ini'
     try:
-        username, password, file_path, server_name, lob = read_config_file(config_file_path)
-        durationMetrics = DurationMetrics(username, password)
+        durationMetrics = DurationMetrics()
         durationMetrics.connectToJenkins()
         durationMetrics.getJobDuration()
         print("Build Average Duration: %.2f minutes" % durationMetrics.calculateAverageDuration())
