@@ -1,7 +1,7 @@
 import jenkins
 import pandas as pd
 
-#input the details
+#TODO: input the details
 username='<username>'
 password='<password>'
 file_path='<file path of the Excel sheet>'
