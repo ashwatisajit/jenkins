@@ -6,7 +6,7 @@ The build_time.py code collects the build times of various jobs of a LOB from Je
 
 jenkins_config.py
 
-The config file for saving the username and password of the Jenkins server, the file path to the Excel sheet where the results are to be stored, the server_name which is the link to the Jenkins server, and the name of the LOB whose project build times are to be collected.
+The config file for saving the username and password of the Jenkins server, the file path to the Excel sheet where the results are to be stored, the server_name which is the link to the Jenkins server, and the name of the LOB whose job build times are to be collected.
 
 **Code to collect code coverage of various projects on SonarQube**
 
