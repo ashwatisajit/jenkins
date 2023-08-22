@@ -1,10 +1,11 @@
 from sonarqube import SonarQubeClient
 import pandas as pd
-import configparser, itertools
 
-SONARQUBE_URL = ''
-USERNAME = ''
-PASSWORD = ''
+#TODO: input the details
+username = '<username of the Sonar server>'
+password = '<password of the Sonar server>'
+server_name = '<link to the Sonar server>'
+file_path= '<file path of the Excel sheet>'
 
 project_keys = []
 project_names = []
@@ -12,21 +13,7 @@ coverage_values= []
 average= 0.0
 total= 0.0
 numberofproj= 0.0
-file_path=''
 i= 0
-
-def read_config_file(config_file_path):
-    #TODO: read input from the config file
-    config = configparser.ConfigParser()
-    config.read(config_file_path)
-    if 'Sonar' in config:
-        username = config.get('Sonar', 'username')
-        password = config.get('Sonar', 'password')
-        file_path = config.get('Sonar', 'file_path')
-        server_name = config.get('Sonar', 'server_name')
-        return username, password, file_path, server_name
-    else:
-        raise ValueError("Invalid or missing [Sonar] section in the config file")
 
 def get_all_project_names():
     #TODO: get project names
@@ -81,9 +68,7 @@ def export():
         df1.to_excel(file_path, index=False)
 
 if __name__ == "__main__":
-    config_file_path = 'jenkins_config2.ini'
-    USERNAME, PASSWORD, file_path, SONARQUBE_URL = read_config_file(config_file_path)
-    sonar = SonarQubeClient(sonarqube_url=SONARQUBE_URL, username=USERNAME, password=PASSWORD)
+    sonar = SonarQubeClient(server_name, username, password)
     project_keys = get_all_project_names()
     for key in project_keys:
         coverage_value = get_project_code_coverage(key)
