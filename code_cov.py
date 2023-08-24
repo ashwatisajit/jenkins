@@ -1,9 +1,11 @@
+
 from sonarqube import SonarQubeClient
 import pandas as pd
+import sys
+
+token = sys.argv[1] #authentication token
 
 #TODO: input the details
-username = '<username of the Sonar server>'
-password = '<password of the Sonar server>'
 server_name = '<link to the Sonar server>'
 file_path= '<file path of the Excel sheet>'
 
@@ -68,7 +70,8 @@ def export():
         df1.to_excel(file_path, index=False)
 
 if __name__ == "__main__":
-    sonar = SonarQubeClient(server_name, username, password)
+    #sonar = SonarQubeClient(server_name, username, password)
+    sonar = SonarQubeClient(server_name, token)
     project_keys = get_all_project_names()
     for key in project_keys:
         coverage_value = get_project_code_coverage(key)
@@ -79,3 +82,5 @@ if __name__ == "__main__":
             coverage_values.append(coverage_value)
     calculateAverage()
     export()
+
+
