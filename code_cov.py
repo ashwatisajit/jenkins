@@ -71,7 +71,7 @@ def export():
 
 if __name__ == "__main__":
     #sonar = SonarQubeClient(server_name, username, password)
-    sonar = SonarQubeClient(server_name, token)
+    sonar = SonarQubeClient(server_name, token=token)
     project_keys = get_all_project_names()
     for key in project_keys:
         coverage_value = get_project_code_coverage(key)
